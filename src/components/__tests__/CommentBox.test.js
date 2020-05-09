@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import CommentBox from "CommentBox";
+import CommentBox from "components/CommentBox";
 
 let wrapped;
 
