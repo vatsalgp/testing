@@ -1,11 +1,17 @@
 import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
+
+import Header from "components/Header";
 import CommentBox from "components/CommentBox";
 import CommentList from "components/CommentList";
 
 const App = () => (
     <div>
-        <CommentBox />
-        <CommentList />
+        <BrowserRouter>
+            <Header />
+            <Route exact path="/" component={CommentList} />
+            <Route exact path="/post" component={CommentBox} />
+        </BrowserRouter>
     </div>
 );
 

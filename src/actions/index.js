@@ -13,4 +13,6 @@ const fetchComments = () => async dispatch => {
     dispatch({ type: "FETCH_COMMENTS", payload: limit(comments, 5) });
 };
 
-export { saveComment, fetchComments };
+const changeAuth = () => ({ type: "CHANGE_AUTH" });
+
+export { saveComment, fetchComments, changeAuth };
