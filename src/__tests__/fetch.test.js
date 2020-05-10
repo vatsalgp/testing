@@ -23,9 +23,17 @@ beforeEach(() => {
 afterEach(() => moxios.uninstall());
 
 it("can fetch and display a list of comments", done => {
-    const wrapped = mount(<Root><App /></Root>);
+    const wrapped = mount(
+        <Root initialState={{ auth: true }}>
+            <App />
+        </Root>
+    );
+    wrapped.find(".post-btn").hostNodes().simulate("click", { button: 0 });
+    wrapped.update();
     wrapped.find(".fetch-comments").simulate("click");
     moxios.wait(() => {
+        wrapped.update();
+        wrapped.find(".home-btn").hostNodes().simulate("click", { button: 0 });
         wrapped.update();
         expect(wrapped.find("li").length).toEqual(5);
         done();

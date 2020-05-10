@@ -6,9 +6,15 @@ import { changeAuth } from "actions";
 
 const Header = ({ changeAuth, auth }) => (
     <div>
-        <Link to="/">Home</Link>
-        <Link to="/post">Post</Link>
-        <button onClick={changeAuth}>{auth ? "Sign Out" : "Sign In"}</button>
+        <Link to="/" className="home-btn">
+            Home
+        </Link>
+        <Link to="/post" className="post-btn">
+            Post
+        </Link>
+        <button className="sign-btn" onClick={changeAuth}>
+            {auth ? "Sign Out" : "Sign In"}
+        </button>
     </div>
 );
 

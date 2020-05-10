@@ -6,7 +6,7 @@ import Root from "components/Root";
 
 let wrapped;
 
-beforeEach(() => wrapped = mount(<Root><CommentBox /></Root>));
+beforeEach(() => wrapped = mount(<Root initialState={{ auth: true }}><CommentBox /></Root>));
 afterEach(() => wrapped.unmount());
 
 it("has a text area and two buttons", () => {

@@ -1,46 +1,37 @@
 import React from 'react';
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 
+import Root from "components/Root";
 import App from 'components/App';
+import Header from 'components/Header';
 import CommentBox from "components/CommentBox";
 import CommentList from "components/CommentList";
 
-let wrapped;
-
-// Run Before Each Test in this file 
-beforeEach(() => {
-    // Wrapped Component
-    wrapped = shallow(<App />);
-});
-
-it('shows a comment box', () => {
-    //Returns array of instances
-    const boxes = wrapped.find(CommentBox);
-
-    //Expectation
-    expect(boxes.length).toEqual(1);
+it('shows a header', () => {
+    const wrapped = mount(<Root><App /></Root>);
+    const lists = wrapped.find(Header);
+    expect(lists.length).toEqual(1);
+    wrapped.unmount();
 });
 
 it('shows a comment list', () => {
-    //Returns array of instances
+    const wrapped = mount(<Root><App /></Root>);
     const lists = wrapped.find(CommentList);
-
-    //Expectation
     expect(lists.length).toEqual(1);
+    wrapped.unmount();
 });
 
-// // Default Try
-// import { render } from '@testing-library/react';
-// const { getByText } = render(<App />);
-// const linkElement = getByText(/learn react/i);
-// expect(linkElement).toBeInTheDocument();
+it('shows a comment box', () => {
+    const wrapped = mount(
+        <Root initialState={{ auth: true }}>
+            <App />
+        </Root>
+    );
 
-// // Try 1
-// //Init
-// const div = document.createElement("div");
-// ReactDOM.render(<App />, div);
-// //Test Here
-// expect(div.innerHTML).toContain("Comment Box");
+    wrapped.find(".post-btn").hostNodes().simulate("click", { button: 0 });
+    wrapped.update();
 
-// //Cleanup
-// ReactDOM.unmountComponentAtNode(div);
+    const boxes = wrapped.find(CommentBox);
+    expect(boxes.length).toEqual(1);
+    wrapped.unmount()
+});
