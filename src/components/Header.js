@@ -8,7 +8,7 @@ const Header = ({ changeAuth, auth }) => (
     <div>
         <Link to="/">Home</Link>
         <Link to="/post">Post</Link>
-        <Link onClick={changeAuth}>{auth ? "Sign Out" : "Sign In"}</Link>
+        <button onClick={changeAuth}>{auth ? "Sign Out" : "Sign In"}</button>
     </div>
 );
 
